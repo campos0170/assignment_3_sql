@@ -2,10 +2,13 @@
 
 -- 1. List all customers who live in Texas ( use JOINs)
 
-select customer.customer_id ,customer.first_name ,customer.last_name , address
+select customer.customer_id ,customer.first_name ,customer.last_name , address,district 
 from customer
 full join address
-on customer.address_id = address_id 
+on customer.address_id = address.address_id 
+where district = 'Texas';
+
+
 
 --- How do i ISOLATE TEXAS ? WHICH TABLE DO I USE ?
 
@@ -77,5 +80,10 @@ where amount>6.99
 
 -- 8 How many free rentals did the stores give away?
 -- Which tables do i use ?
+-- Answer 288
 
+select count(amount) from payment 
+full join rental 
+on payment.customer_id  = rental.customer_id 
+where amount =0
 
